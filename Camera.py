@@ -18,11 +18,10 @@ mpDraw = mp.solutions.drawing_utils
 
 while run:
     ret, frame = cam.read()
-    imgRGB = cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
-    results = Hands.process(imgRGB)
+    results = Hands.process(frame)
     if results.multi_hand_landmarks:
         for handLms in results.multi_hand_landmarks:
-            mpDraw.draw_landmarks(imgRGB,handLms,mpHands.HAND_CONNECTIONS)
-    FRAME_WINDOW.image(imgRGB)
+            mpDraw.draw_landmarks(frame,handLms,mpHands.HAND_CONNECTIONS)
+    FRAME_WINDOW.image(frame)
 else:
     st.write('Stopped')
